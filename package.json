@@ -1,0 +1,113 @@
+{
+  "name": "n-viewer",
+  "version": "2.4.0",
+  "description": "A private, distraction-free desktop reader and lightweight editor for Markdown, PDF, DOCX, and TXT documents.",
+  "main": "main/index.js",
+  "author": "N Viewer",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "start": "npm run build:renderer && electron .",
+    "build:renderer": "vite build",
+    "build:win": "npm run check && electron-builder --win",
+    "build:dir": "npm run check && electron-builder --dir",
+    "test": "node --test",
+    "check": "node --check main/index.js && node --check main/document-service.js && node --check main/history-store.js && node --check main/security.js && node --check main/settings.js && node --check preload/index.js && node --check renderer/src/app.js && node --check renderer/src/markdown-codec.js && node --check renderer/src/rich-editor.js && node --check renderer/src/pdf-viewer.js && node --check renderer/src/pdf-layout.mjs && npm run test && npm run build:renderer",
+    "build:installer": "npm run check && electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "@capacitor/core": "8.4.2",
+    "@capacitor/app": "8.1.1",
+    "@capacitor/filesystem": "8.1.2",
+    "@capacitor/preferences": "8.0.1",
+    "@capawesome/capacitor-file-picker": "8.0.3",
+    "dompurify": "3.4.12",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "marked": "18.0.7",
+    "pdfjs-dist": "6.1.200",
+    "vite": "8.1.5"
+  },
+  "dependencies": {
+    "html-to-docx": "1.8.0",
+    "mammoth": "1.12.0"
+  },
+  "build": {
+    "appId": "com.nviewer.desktop",
+    "productName": "N Viewer",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "assets"
+    },
+    "files": [
+      "main/**/*",
+      "preload/**/*",
+      "renderer-dist/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "pdf",
+        "name": "N Viewer PDF Document",
+        "description": "PDF document",
+        "role": "Viewer",
+        "icon": "pdf.ico"
+      },
+      {
+        "ext": "docx",
+        "name": "N Viewer Word Document",
+        "description": "Word document",
+        "role": "Editor",
+        "icon": "docx.ico"
+      },
+      {
+        "ext": [
+          "md",
+          "markdown"
+        ],
+        "name": "N Viewer Markdown Document",
+        "description": "Markdown document",
+        "role": "Editor",
+        "icon": "md.ico"
+      },
+      {
+        "ext": "txt",
+        "name": "N Viewer Text Document",
+        "description": "Text document",
+        "role": "Editor",
+        "icon": "txt.ico"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "n-viewer.ico",
+      "artifactName": "N-Viewer-Setup-${version}-${arch}.${ext}",
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "perMachine": true,
+      "allowElevation": true,
+      "runAfterFinish": true,
+      "uninstallDisplayName": "N Viewer",
+      "deleteAppDataOnUninstall": false,
+      "shortcutName": "N Viewer"
+    }
+  }
+}

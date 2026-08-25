@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build output
+renderer-dist/
+release/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Env / local config
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vs/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Test/coverage output
+coverage/
