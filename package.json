@@ -2,8 +2,8 @@
   "name": "n-viewer",
   "version": "2.4.0",
   "description": "A private, distraction-free desktop reader and lightweight editor for Markdown, PDF, DOCX, and TXT documents.",
-  "main": "main/index.js",
-  "author": "N Viewer",
+  "main": "main/gabatee-entry.js",
+  "author": "Najmx",
   "license": "MIT",
   "private": true,
   "engines": {
@@ -16,7 +16,7 @@
     "build:win": "npm run check && electron-builder --win",
     "build:dir": "npm run check && electron-builder --dir",
     "test": "node --test",
-    "check": "node --check main/index.js && node --check main/document-service.js && node --check main/history-store.js && node --check main/security.js && node --check main/settings.js && node --check preload/index.js && node --check renderer/src/app.js && node --check renderer/src/markdown-codec.js && node --check renderer/src/rich-editor.js && node --check renderer/src/pdf-viewer.js && node --check renderer/src/pdf-layout.mjs && npm run test && npm run build:renderer",
+    "check": "node --check main/gabatee-entry.js && node --check main/index.js && node --check main/document-service.js && node --check main/history-store.js && node --check main/security.js && node --check main/settings.js && node --check preload/index.js && node --check renderer/src/app.js && node --check renderer/src/markdown-codec.js && node --check renderer/src/rich-editor.js && node --check renderer/src/pdf-viewer.js && node --check renderer/src/pdf-layout.mjs && npm run test && npm run build:renderer",
     "build:installer": "npm run check && electron-builder --win nsis"
   },
   "devDependencies": {
@@ -38,7 +38,7 @@
   },
   "build": {
     "appId": "com.nviewer.desktop",
-    "productName": "N Viewer",
+    "productName": "Gabatee",
     "asar": true,
     "directories": {
       "output": "release",
@@ -54,14 +54,14 @@
     "fileAssociations": [
       {
         "ext": "pdf",
-        "name": "N Viewer PDF Document",
+        "name": "Gabatee PDF Document",
         "description": "PDF document",
         "role": "Viewer",
         "icon": "pdf.ico"
       },
       {
         "ext": "docx",
-        "name": "N Viewer Word Document",
+        "name": "Gabatee Word Document",
         "description": "Word document",
         "role": "Editor",
         "icon": "docx.ico"
@@ -71,14 +71,14 @@
           "md",
           "markdown"
         ],
-        "name": "N Viewer Markdown Document",
+        "name": "Gabatee Markdown Document",
         "description": "Markdown document",
         "role": "Editor",
         "icon": "md.ico"
       },
       {
         "ext": "txt",
-        "name": "N Viewer Text Document",
+        "name": "Gabatee Text Document",
         "description": "Text document",
         "role": "Editor",
         "icon": "txt.ico"
@@ -94,7 +94,7 @@
         }
       ],
       "icon": "n-viewer.ico",
-      "artifactName": "N-Viewer-Setup-${version}-${arch}.${ext}",
+      "artifactName": "Gabatee-Setup-${version}-${arch}.${ext}",
       "signExecutable": false
     },
     "nsis": {
@@ -105,9 +105,9 @@
       "perMachine": true,
       "allowElevation": true,
       "runAfterFinish": true,
-      "uninstallDisplayName": "N Viewer",
+      "uninstallDisplayName": "Gabatee",
       "deleteAppDataOnUninstall": false,
-      "shortcutName": "N Viewer"
+      "shortcutName": "Gabatee"
     }
   }
 }
