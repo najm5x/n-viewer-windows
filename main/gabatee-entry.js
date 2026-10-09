@@ -48,10 +48,12 @@ function rebrandMenuItems(items) {
       const originalClick = next.click;
       next.click = (...args) => {
         const window = BrowserWindow.getFocusedWindow();
-        if (window && !window.isDestroyed()) {
-          void window.webContents.executeJavaScript('window.__gabateeCapturePdfCenter?.()', true).catch(() => {});
-        }
-        return originalClick(...args);
+        if (!window || window.isDestroyed()) return originalClick(...args);
+        void window.webContents
+          .executeJavaScript('window.__gabateeCapturePdfCenter?.()', true)
+          .catch(() => {})
+          .finally(() => originalClick(...args));
+        return undefined;
       };
     }
     return next;
