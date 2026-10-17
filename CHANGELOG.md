@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.5.0 — Gabatee
+
+- Rebranded the Windows application, installer, shortcuts, and file association display names from N Viewer to Gabatee.
+- Replaced the application icon with the new purple G logo.
+- Expanded Markdown reading to the available window width while retaining comfortable edge padding.
+- Adjusted PDF zoom handling to keep the visible center anchored.
+- Enabled opening additional documents in separate application windows instead of replacing the currently open document.
+- Added Windows-based CI with automated installer generation and GitHub release publishing on the main branch.
+- Kept the existing internal application ID, data paths, and nviewer: document protocol for compatibility.
+
+
 ## 2.4.0
 
 - Added visual Markdown editing without embedding HTML in Markdown files.
