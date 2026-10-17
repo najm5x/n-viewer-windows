@@ -1,6 +1,6 @@
 {
   "name": "n-viewer",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "A private, distraction-free desktop reader and lightweight editor for Markdown, PDF, DOCX, and TXT documents.",
   "main": "main/gabatee-entry.js",
   "author": "Najmx",
