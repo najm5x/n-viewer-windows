@@ -54,27 +54,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $version = node -p "require('./package.json').version"
-          if ($LASTEXITCODE -ne 0 -or $version -notmatch '^[0-9]+[.][0-9]+[.][0-9]+) {
-            throw "package.json must contain a semantic version."
-          }
-          $tag = "v$version"
-          gh release view $tag --repo $env:GITHUB_REPOSITORY *> $null
-          if ($LASTEXITCODE -eq 0) {
-            Write-Host "Release $tag already exists; leaving it unchanged."
-            exit 0
-          }
-
-          $existingTag = git ls-remote --tags origin "refs/tags/$tag"
-          if ($existingTag) {
-            throw "Tag $tag exists without a release; refusing to overwrite it."
-          }
-
-          $installer = Get-ChildItem "release/Gabatee-Setup-*.exe" | Select-Object -First 1
-          if (-not $installer) { throw "Windows installer was not built." }
-
-          gh release create $tag $installer.FullName --repo $env:GITHUB_REPOSITORY --target $env:GITHUB_SHA --title "Gabatee $tag" --generate-notes --latest
-          if ($LASTEXITCODE -ne 0) { throw "Publishing the GitHub Release failed." }
-) {
+          if ($LASTEXITCODE -ne 0 -or $version -notmatch '^[0-9]+[.][0-9]+[.][0-9]+$') {
             throw "package.json must contain a semantic version."
           }
           $tag = "v$version"
