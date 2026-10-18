@@ -13,11 +13,11 @@
     "dev": "node scripts/dev.mjs",
     "start": "npm run build:renderer && electron .",
     "build:renderer": "vite build",
-    "build:win": "npm run check && electron-builder --win",
-    "build:dir": "npm run check && electron-builder --dir",
+    "build:win": "node scripts/prepare-gabatee-icon.cjs && npm run check && electron-builder --win",
+    "build:dir": "node scripts/prepare-gabatee-icon.cjs && npm run check && electron-builder --dir",
     "test": "node --test",
-    "check": "node --check main/gabatee-entry.js && node --check main/index.js && node --check main/document-service.js && node --check main/history-store.js && node --check main/security.js && node --check main/settings.js && node --check preload/index.js && node --check renderer/src/app.js && node --check renderer/src/markdown-codec.js && node --check renderer/src/rich-editor.js && node --check renderer/src/pdf-viewer.js && node --check renderer/src/pdf-layout.mjs && npm run test && npm run build:renderer",
-    "build:installer": "npm run check && electron-builder --win nsis"
+    "check": "node --check scripts/prepare-gabatee-icon.cjs && node --check main/gabatee-entry.js && node --check main/index.js && node --check main/document-service.js && node --check main/history-store.js && node --check main/security.js && node --check main/settings.js && node --check preload/index.js && node --check renderer/src/app.js && node --check renderer/src/markdown-codec.js && node --check renderer/src/rich-editor.js && node --check renderer/src/pdf-viewer.js && node --check renderer/src/pdf-layout.mjs && npm run test && npm run build:renderer",
+    "build:installer": "node scripts/prepare-gabatee-icon.cjs && npm run check && electron-builder --win nsis"
   },
   "devDependencies": {
     "@capacitor/core": "8.4.2",
